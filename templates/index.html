@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to NeuroLearn</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            color: #4a148c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px #ce93d8;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: #ce93d8;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #ba68c8;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .button:hover {
+            background-color: #ba68c8;
+            transform: scale(1.05);
+        }
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f8bbd0;
+            color: #880e4f;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 0 6px #f48fb1;
+            font-size: 0.9rem;
+        }
+        .profile-link {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            background-color: #d1c4e9;
+            color: #4a148c;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 0 8px #b39ddb;
+        }
+        .profile-link:hover {
+            background-color: #b39ddb;
+        }
+    </style>
+</head>
+<body>
+    <div class="ribbon">🎀 Pastel Mode</div>
+    <h1>Welcome to NeuroLearn</h1>
+    <p>Your magical study companion is ready to sparkle ✨</p>
+    
+    <!-- Add here -->
+ <p id="userName"></p>
+
+    <a href="{{ url_for('dashboard') }}" class="button">Begin My Focus Quest</a>
+    <a href="{{ url_for('profile') }}" class="profile-link"> My Profile ✏️</a>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    
+    
+</body>
+</html>

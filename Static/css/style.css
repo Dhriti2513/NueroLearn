@@ -1,0 +1,328 @@
+/* ✨ Global Body Styling ✨ */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,700;1,700&display=swap');
+
+body {
+  font-family: 'Comic Neue', cursive, Arial, sans-serif;
+  background: linear-gradient(-45deg, #f3e5f5, #e1bee7, #fce4ec, #d1c4e9);
+  background-size: 400% 400%;
+  animation: bgShift 15s ease infinite;
+  color: #4a148c;
+  text-align: center;
+  padding-top: 100px;
+  line-height: 1.5;
+}
+
+@keyframes bgShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* ✨ Buttons ✨ */
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ce93d8;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px #d8a4e0;
+  box-shadow: 0 0 8px #d4a5f3;
+  transition: transform 0.2s ease, background 0.3s ease;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background-color: #ba68c8;
+}
+
+/* ✨ Dyslexia Mode ✨ */
+.dyslexia {
+  font-family: 'OpenDyslexic', Arial, sans-serif;
+  background-color: #fffbe6;
+  letter-spacing: 0.05em;
+}
+
+/* ✨ XP Bar ✨ */
+.xp-bar-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.xp-bar-background {
+  width: 100%;
+  height: 25px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #ff99cc, #c084f5);
+  box-shadow: 0 0 15px #e0b3ff;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* ✨ Badge Styling ✨ */
+#badgeContainer span {
+  display: inline-block;
+  margin: 5px;
+  padding: 6px 10px;
+  background-color: #ffeaa7;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.badge-icon {
+  width: 60px;
+  height: 60px;
+  margin: 8px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.badge-icon:hover {
+  transform: scale(1.1);
+}
+
+/* ✨ Glow and Sparkle Animations ✨ */
+@keyframes glowPage {
+  0%   { box-shadow: 0 0 0px #00ffc3 inset; }
+  50%  { box-shadow: 0 0 40px #00ffc3 inset; }
+  100% { box-shadow: 0 0 0px #00ffc3 inset; }
+}
+
+.glow-achievement {
+  animation: glowPage 1s ease-in-out 3;
+}
+
+@keyframes magicalSparkle {
+  0%, 100% { box-shadow: 0 0 5px #f3a0ff, 0 0 15px #c084f5; }
+  50% { box-shadow: 0 0 25px #e2afff, 0 0 35px #b388ff; }
+}
+
+.sparkle {
+  animation: magicalSparkle 2s ease-in-out 3;
+}
+
+/* ✨ Style Bar Buttons ✨ */
+.style-bar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+  background: #fdfdfd;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.style-bar button {
+  background-color: #4b9ce2;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ✨ Back to Home Link ✨ */
+.back-home {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #e1bee7;
+  color: #4a148c;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 8px #ce93d8;
+  transition: transform 0.3s ease;
+}
+
+.back-home:hover {
+  transform: scale(1.05);
+  background-color: #ce93d8;
+}
+
+/* ✨ Floating Fairy (Optional) ✨ */
+.fairy-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  animation: floatFairy 4s ease-in-out infinite;
+  z-index: 999;
+}
+
+@keyframes floatFairy {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+#userName, #goalDisplay {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #6a1b9a;
+  margin-top: 10px;
+  text-shadow: 0 0 4px #e1bee7;
+}
+
+.meadow-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  background: linear-gradient(to right, #f8bbd0, #d1c4e9);
+  color: #4a148c;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 0 8px #ce93d8;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.meadow-button:hover {
+  background: linear-gradient(to right, #e1bee7, #ba68c8);
+  transform: scale(1.05);
+  color: white;
+}
+
+
+
+.glow-button {
+  background-color: #f8bbd0;
+  color: #4a148c;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 10px #f48fb1, 0 0 5px #f8bbd0 inset;
+  transition: all 0.3s ease;
+}
+
+.glow-button:hover {
+  background-color: #f48fb1;
+  box-shadow: 0 0 15px #ec407a, 0 0 8px #f8bbd0 inset;
+  transform: scale(1.05);
+}
+
+.timer-panel {
+  background-color: #fce4ec;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 420px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px #ce93d8;
+  text-align: center;
+}
+
+.timer-settings {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.timer-display {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4a148c;
+  margin-bottom: 20px;
+}
+
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.timer-buttons .glow-button {
+  background-color: #f8bbd0;
+  color: #4a148c;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 10px #f48fb1, 0 0 5px #f8bbd0 inset;
+  transition: all 0.3s ease;
+}
+
+.timer-buttons .glow-button:hover {
+  background-color: #f48fb1;
+  box-shadow: 0 0 15px #ec407a, 0 0 8px #f8bbd0 inset;
+  transform: scale(1.05);
+}
+
+
+.glow-button {
+  background-color: #f8bbd0;
+  color: #4a148c;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 10px #f48fb1, 0 0 5px #f8bbd0 inset;
+  transition: all 0.3s ease;
+}
+
+.glow-button:hover {
+  background-color: #f48fb1;
+  box-shadow: 0 0 15px #ec407a, 0 0 8px #f8bbd0 inset;
+  transform: scale(1.05);
+}
+
+.theme-btn {
+  background-color: #f8bbd0;
+  color: #4a148c;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 8px #f48fb1, 0 0 5px #f8bbd0 inset;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+  background-color: #f48fb1;
+  box-shadow: 0 0 15px #ec407a, 0 0 8px #f8bbd0 inset;
+  transform: scale(1.05);
+}
+
+/* Dyslexia toggle font effect */
+.dyslexia-font {
+  font-family: 'OpenDyslexic', Arial, sans-serif !important;
+  color: #4a148c !important; /* Bold purple shade */
+  background-color: #f3e5f5 !important;
+}
+
+.dyslexia-font.dark-bg {
+  color: #ffebee;
+  background-color: #212121;
+}
+
+body {
+  transition: color 0.4s ease, background-color 0.4s ease;
+}
+

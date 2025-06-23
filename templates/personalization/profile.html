@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroLearn Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #6a1b9a;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px #e1bee7;
+    }
+    .profile-section {
+      background-color: #fce4ec;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 12px #d1c4e9;
+    }
+    .profile-section label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+    .profile-section input[type="text"],
+    .profile-section select {
+      padding: 10px;
+      width: 80%;
+      border-radius: 8px;
+      border: 1px solid #ce93d8;
+      background-color: #fff;
+      margin-bottom: 15px;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ba68c8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-weight: bold;
+      box-shadow: 0 0 10px #e1bee7;
+    }
+    .submit-btn:hover {
+      background-color: #ab47bc;
+    }
+    
+  </style>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <h1>🎀 My NeuroLearn Profile</h1>
+  <div class="profile-section">
+    <label for="username">Display Name</label>
+    <input type="text" id="username" placeholder="e.g. MagicSparkleGirl" />
+
+    <label for="theme">Preferred Theme</label>
+    <select id="theme">
+      <option value="pink">Pastel Pink</option>
+      <option value="purple">Lavender Purple</option>
+      <option value="sky">Sky Blue</option>
+    </select>
+
+    <label for="font">Font Style</label>
+    <select id="font">
+      <option value="default">Default</option>
+      <option value="dyslexic">Dyslexia-Friendly</option>
+      <option value="comic">Comic Style</option>
+    </select>
+
+    <label for="goals">My Study Goals</label>
+    <input type="text" id="goals" placeholder="e.g. 2 hours daily" />
+
+    <button class="submit-btn" onclick="saveProfile()">💾 Save Preferences</button>
+    
+
+  </div>
+
+
+  <script>
+    function saveProfile() {
+      const name = document.getElementById('username').value;
+      const theme = document.getElementById('theme').value;
+      const font = document.getElementById('font').value;
+      const goals = document.getElementById('goals').value;
+
+      localStorage.setItem('neuroName', name);
+      localStorage.setItem('neuroTheme', theme);
+      localStorage.setItem('neuroFont', font);
+      localStorage.setItem('neuroGoals', goals);
+
+      alert('✨ Your preferences are saved!');
+    }
+
+    // Auto-load saved preferences
+    window.onload = () => {
+      document.getElementById('username').value = localStorage.getItem('neuroName') || '';
+      document.getElementById('theme').value = localStorage.getItem('neuroTheme') || 'pink';
+      document.getElementById('font').value = localStorage.getItem('neuroFont') || 'default';
+      document.getElementById('goals').value = localStorage.getItem('neuroGoals') || '';
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+  <a href="{{ url_for('dashboard') }}" class="meadow-button">🌷 Back to Study Meadows</a>
+
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧙‍♂️ NeuroLearn Admin Panel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+  <style>
+    body {
+      background-color: #f3e5f5;
+      color: #4a148c;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    .admin-card {
+      background: #fce4ec;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #ce93d8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    select, .stats-box {
+      margin: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ba68c8;
+    }
+    .stats-box {
+      background: #fff;
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+    a.back-home {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #e1bee7;
+      color: #4a148c;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 8px #ce93d8;
+    }
+    a.back-home:hover {
+      background-color: #ce93d8;
+      color: white;
+    }
+  </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<div>
+  <h1>📊 NeuroLearn Admin Panel</h1>
+
+  <div class="admin-card">
+    <label for="studentSelect">Select a Student:</label><br>
+    <select id="studentSelect">
+      <option value="dhriti">Dhriti</option>
+      <option value="jungkook">Jungkook</option>
+      <option value="taehyung">Taehyung</option>
+    </select>
+
+    <div class="stats-box">XP: <span id="xp">80</span></div>
+    <div class="stats-box">Focus Sessions: <span id="focus">3</span></div>
+    <div class="stats-box">Badges Earned: <span id="badges">4</span></div>
+  </div>
+
+   <script>
+  const mockData = {
+    dhriti: { xp: 80, focus: 3, badges: 4 },
+    jungkook: { xp: 95, focus: 5, badges: 6 },
+    taehyung: { xp: 60, focus: 2, badges: 3 }
+  };
+
+  const select = document.getElementById("studentSelect");
+  const xpSpan = document.getElementById("xp");
+  const focusSpan = document.getElementById("focus");
+  const badgesSpan = document.getElementById("badges");
+
+  select.addEventListener("change", function() {
+    const selected = select.value;
+    const data = mockData[selected];
+    xpSpan.textContent = data.xp;
+    focusSpan.textContent = data.focus;
+    badgesSpan.textContent = data.badges;
+  });
+</script>
+    <a href="{{ url_for('dashboard') }}" class="back-home">← 🗝️ Exit the Arcane Panel</a>
+    
+</body>
+</html>

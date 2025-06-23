@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NeuroLearn Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap');
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            transition: all 0.3s ease;
+            color: #333366;
+            height: 100%;
+            overflow-x: hidden;
+            background-color: #fff0f6;
+        }
+        body.dyslexia {
+            font-family: 'OpenDyslexic', sans-serif;
+        }
+        h1 {
+            color: #cc3366;
+            margin-top: 30px;
+            text-shadow: 0 0 5px #ff99cc;
+        }
+        .line-spacing {
+            line-height: 1.8;
+        }
+        .controls, .timer, .background-options, .fairy-settings {
+            margin: 15px auto;
+            max-width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .button {
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff99cc;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 8px #ff66b2;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ff66b2;
+        }
+        input[type="number"], input[type="text"] {
+            padding: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            width: 60px;
+        }
+        #countdown {
+            font-size: 2rem;
+            color: #cc3366;
+            text-shadow: 0 0 10px #ff99cc;
+        }
+        .progress-container {
+            background-color: #ffe6f0;
+            border-radius: 20px;
+            height: 25px;
+            width: 80%;
+            margin: 20px auto;
+            box-shadow: 0 0 15px #ffc0cb;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 60%;
+            background: linear-gradient(to right, #ff99cc, #ff66b2);
+            border-radius: 20px;
+            box-shadow: 0 0 10px #ff66b2;
+        }
+        .badge-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            border-radius: 20px;
+            background: #fff8fc;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(255, 105, 180, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ff69b4;
+        }
+        .badge img {
+            width: 120px;
+            height: auto;
+        }
+        .badge-title {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #99004d;
+        }
+        .fairy-box {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+        .fairy-box img {
+            width: 100px;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .fairy-message {
+            background: #ffe0f7;
+            padding: 10px 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px #e6a9b3;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #663366;
+            max-width: 200px;
+            text-align: center;
+        }
+        .back-home {
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+        }
+        .back-home a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #ffcce6;
+            color: #660033;
+            font-weight: bold;
+            box-shadow: 0 0 8px #ff99cc;
+            transition: background 0.3s ease;
+        }
+        .back-home a:hover {
+            background-color: #ff99cc;
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="line-spacing">
+    <h1>🎀 NeuroLearn Dashboard 🎀</h1>
+    <p>Track your learning journey with sparkle and pride!</p>
+
+<!-- Add right below this line -->
+<h2 id="userName"></h2>
+<p id="goalDisplay"></p>
+
+    <div class="controls">
+        <button class="button" onclick="toggleDyslexia()">Toggle Dyslexia Font</button>
+        <button class="button" onclick="toggleLineSpacing()">Toggle Line Spacing</button>
+        <button class="button" onclick="toggleFontColor()">Toggle Font Color</button>
+    </div>
+
+    <div class="background-options">
+         <button class="theme-btn" onclick="changeTheme('pink')">Pink</button>
+         <button class="theme-btn" onclick="changeTheme('blue')">Blue</button>
+         <button class="theme-btn" onclick="changeTheme('purple')">Purple</button>
+         <button class="theme-btn" onclick="changeTheme('white')">White</button>
+
+    </div>
+
+     <script>
+    function changeBackground(color) {
+      document.body.style.backgroundColor = color;
+    }
+    // ...existing code...
+  </script>
+
+<div class="timer-panel">
+  <h2>⏳ Focus Timer</h2>
+
+  <div class="timer-settings">
+    <label>Study (min): <input type="number" id="studyTime" value="25"></label>
+    <label>Break (min): <input type="number" id="breakTime" value="5"></label>
+  </div>
+  <div class="timer-display" id="timer">25:00</div>
+
+  <div class="timer-buttons">
+    <button class="glow-button" onclick="startTimer()">Start</button>
+    <button class="glow-button" onclick="pauseTimer()">Pause</button>
+    <button class="glow-button" onclick="resetTimer()">Restart</button>
+  </div>
+</div>
+ 
+
+    <div class="controls">
+        <p>XP: <span id="xp">60</span></p>
+        <button class="button" onclick="increaseXP()">+ Add XP</button>
+    </div>
+
+    <div class="fairy-settings">
+        <label>Your Fairy 🧚‍♀️: <input type="text" id="fairyName" placeholder="ChimFairySoul" /></label>
+        <button class="button" onclick="summonFairy()">Summon Fairy</button>
+    </div>
+
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <h2>Your Achievements</h2>
+    <div class="badge-gallery">
+        <div class="badge"><img src="images/novice.png" alt="Novice"><div class="badge-title">Novice Nibbler</div></div>
+        <div class="badge"><img src="images/sprout.png" alt="Sprout"><div class="badge-title">Steady Sprout</div></div>
+        <div class="badge"><img src="images/glow.png" alt="Glow"><div class="badge-title">Glowing Gradie</div></div>
+        <div class="badge"><img src="images/dreamcore.png" alt="Dreamcore"><div class="badge-title">Dreamcore Devotee</div></div>
+    </div>
+
+    <div class="back-home">
+        <a href="{{ url_for('home') }}">← 💜Back to NueroVerse💜</a>
+        <a href="{{ url_for('profile') }}">🌙Open Profile🌙</a>
+    </div>
+
+    <div class="fairy-box">
+        <img id="fairyImg" src="images/fairy1.png" alt="Your Fairy">
+        <div class="fairy-message" id="fairyMessage">Say hi to your fairy ✨</div>
+    </div>
+
+    <script>
+        let xp = 60;
+        let isDarkFont = false;
+        let countdownEl = document.getElementById('countdown');
+        let timer;
+        let timerInterval;
+        let isPaused = false;
+
+        function toggleDyslexia() {
+            document.body.classList.toggle('dyslexia');
+        }
+
+        function toggleLineSpacing() {
+            document.body.classList.toggle('line-spacing');
+        }
+
+        function toggleFontColor() {
+            isDarkFont = !isDarkFont;
+            document.body.style.color = isDarkFont ? '#222' : '#333366';
+        }
+
+function changeBackground(color) {
+    document.body.style.backgroundColor = color;
+}
+
+// Timer logic moved here
+let studyDuration = 25 * 60;
+let breakDuration = 5 * 60;
+let timeRemaining = studyDuration;
+/* timer variable already declared above, do not redeclare */
+let isStudyTime = true;
+
+function updateDisplay() {
+    const minutes = Math.floor(timeRemaining / 60).toString().padStart(2, "0");
+    const seconds = (timeRemaining % 60).toString().padStart(2, "0");
+    document.getElementById("timer").textContent = `${minutes}:${seconds}`;
+}
+
+function startTimer() {
+    const studyInput = parseInt(document.getElementById("studyTime").value) || 25;
+    const breakInput = parseInt(document.getElementById("breakTime").value) || 5;
+
+    studyDuration = studyInput * 60;
+    breakDuration = breakInput * 60;
+
+    if (!timer) {
+        timeRemaining = isStudyTime ? studyDuration : breakDuration;
+        updateDisplay();
+        timer = setInterval(countdown, 1000);
+    }
+}
+
+function countdown() {
+    if (timeRemaining > 0) {
+        timeRemaining--;
+        updateDisplay();
+    } else {
+        clearInterval(timer);
+        timer = null;
+        if (isStudyTime) {
+            isStudyTime = false;
+            alert("🍵 Take a Break!");
+            timeRemaining = breakDuration;
+            updateDisplay();
+            timer = setInterval(countdown, 1000); // Start break timer
+        } else {
+            alert("✅ Session Complete!");
+            // Do not restart timer, session ends here
+        }
+    }
+}
+
+function pauseTimer() {
+    clearInterval(timer);
+    timer = null;
+}
+
+function resetTimer() {
+    clearInterval(timer);
+    timer = null;
+    isStudyTime = true;
+    timeRemaining = studyDuration;
+    updateDisplay();
+}
+
+window.onload = updateDisplay;
+
+        function increaseXP() {
+            xp += 10;
+            document.getElementById('xp').textContent = xp;
+        }
+
+        function summonFairy() {
+            const name = document.getElementById('fairyName').value || "Lumi";
+            document.getElementById('fairyMessage').textContent = `Meet your fairy, ${name}! 🧚‍♀️ Here to guide you.`;
+            // you can add logic here to change image based on name
+        }
+
+        function playChime() {
+            const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg');
+            audio.play();
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    <a href="{{ url_for('admin') }}" class="button">🧙‍♂️ Admin Panel</a>
+    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
+    <button class="theme-btn" onclick="toggleFontColor()">Toggle Font Color</button>
+    <script src="{{ url_for('static', filename='js/gamification/timer.js') }}"></script>
+
+
+</body>
+</html>
