@@ -2,6 +2,14 @@
 
 NueroLearn is a brain-training and learning enhancement platform designed to help users improve cognitive skills through interactive exercises and personalized learning paths.
 
+## 🎥 Project Demo
+
+▶️ [Click to Watch the Dashboard Demo](https://github.com/Dhriti2513/NueroLearn/raw/main/NueroLearn%20Video.mp4)
+
+This video showcases the user interface built using HTML, CSS, and JavaScript with a focus on simplicity, accessibility, and responsive layout.
+
+---
+
 ## 🚀 Features
 
 - 🧩 Cognitive games to boost memory, attention, and problem-solving
